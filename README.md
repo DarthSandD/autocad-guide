@@ -19,10 +19,12 @@ its exact start/end timestamp in a modal player.
 
 ## Coverage
 
-- 126 commands, 79 with a curated clip, 47 with no clip yet.
+- 126 commands, 125 with a verified curated clip, 1 with no clip (DSVIEWER, an obsolete command).
 - Video lookup is **exact-match only**. A clip is never borrowed from a
   similarly-named command (e.g. DIMBASELINE inheriting DIM), because playing the
   wrong tutorial is worse than showing none.
+- Every video ID is verified live against YouTube (title + duration) before it
+  ships; a dead or unavailable video is never left in place.
 
 ## Notes
 
