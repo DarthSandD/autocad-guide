@@ -317,6 +317,37 @@ body {
   font-weight: 600;
 }
 
+/* No-clip state: honest placeholder instead of a mismatched video */
+.card-thumb.no-video {
+  cursor: pointer;
+  border: 1px dashed var(--border);
+  background: repeating-linear-gradient(45deg, var(--surface-2), var(--surface-2) 5px, var(--surface) 5px, var(--surface) 10px);
+}
+
+.card-thumb .no-clip {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-muted);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.card-thumb.no-video:hover .no-clip { color: var(--accent); }
+
+.card-thumb .no-clip svg {
+  width: 15px;
+  height: 15px;
+  opacity: 0.75;
+}
+
 .card-body { flex: 1; min-width: 0; }
 
 .card-cmd {
@@ -596,13 +627,6 @@ body {
 
 <script>
 // ─── Curated Video Database ─────────────────────────────────────
-const FALLBACK_VIDEO = {
-  videoId: '-U5koWtCmeE',
-  start: 15,
-  end: 40,
-  title: 'AutoCAD Full Tutorial for Beginners'
-};
-
 const VIDEO_DB = {
   LINE:        { videoId: 'Fof4nfdGLtQ', start: 20, end: 40 },
   CIRCLE:      { videoId: 'ez-iani6OxA', start: 35, end: 55 },
@@ -735,6 +759,10 @@ const COMMANDS = [
   { key:'LENGTHEN', name:'Lengthen', category:'Modifying', keys:'LEN', desc:'Change object length or included angle' },
   { key:'ALIGN', name:'Align', category:'Modifying', keys:'AL', desc:'Align objects in 2D or 3D with source and target points' },
   { key:'REVERSE', name:'Reverse', category:'Modifying', keys:'REVERSE', desc:'Reverse vertex order of lines, polylines, splines' },
+  { key:'ERASE', name:'Erase', category:'Modifying', keys:'E', desc:'Delete selected objects from the drawing' },
+  { key:'HATCHEDIT', name:'Hatch Edit', category:'Modifying', keys:'HE', desc:'Edit pattern, scale, and angle of an existing hatch' },
+  { key:'UNDO', name:'Undo', category:'Modifying', keys:'U / Ctrl+Z', desc:'Reverse the most recent command or action' },
+  { key:'REDO', name:'Redo', category:'Modifying', keys:'Ctrl+Y', desc:'Reapply the action most recently undone' },
 
   { key:'TEXT', name:'Single Line Text', category:'Annotation', keys:'DT', desc:'Create single-line text with specified style and height' },
   { key:'MTEXT', name:'Multi-line Text', category:'Annotation', keys:'T / MT', desc:'Create formatted paragraph text with columns and tabs' },
@@ -768,6 +796,8 @@ const COMMANDS = [
   { key:'LTSCALE', name:'Linetype Scale', category:'Layers', keys:'LTS', desc:'Adjust global linetype pattern scaling' },
   { key:'LINEWEIGHT', name:'Lineweight', category:'Layers', keys:'LW', desc:'Set line display and plotting thickness' },
   { key:'PROPERTIES', name:'Properties', category:'Layers', keys:'PR / CH', desc:'View and edit object properties in palette' },
+  { key:'MATCHPROP', name:'Match Properties', category:'Layers', keys:'MA', desc:'Copy color, layer, and linetype from one object to others' },
+  { key:'CHPROP', name:'Change Properties', category:'Layers', keys:'CH', desc:'Change color, layer, linetype, and thickness of objects' },
 
   { key:'INSERT', name:'Insert Block', category:'Blocks', keys:'I', desc:'Place block reference or external drawing file' },
   { key:'BLOCK', name:'Create Block', category:'Blocks', keys:'B', desc:'Define reusable block from selected objects' },
@@ -801,6 +831,7 @@ const COMMANDS = [
   { key:'QSELECT', name:'Quick Select', category:'Settings', keys:'QSELECT', desc:'Filter objects by property criteria' },
   { key:'FILTER', name:'Object Selection Filters', category:'Settings', keys:'FILTER', desc:'Create persistent object property filters' },
   { key:'GROUP', name:'Group', category:'Settings', keys:'G', desc:'Create named selection sets of objects' },
+  { key:'SELECT', name:'Select', category:'Settings', keys:'SELECT', desc:'Create a selection set with filtering options' },
   { key:'SELECTIONCYCLING', name:'Selection Cycling', category:'Settings', keys:'Ctrl+W', desc:'Cycle through overlapping objects' },
 
   { key:'PURGE', name:'Purge', category:'Management', keys:'PU', desc:'Remove unused named objects from drawing' },
@@ -811,6 +842,7 @@ const COMMANDS = [
   { key:'PREVIEW', name:'Preview', category:'Management', keys:'PREVIEW', desc:'Preview print output before sending' },
   { key:'RENDER', name:'Render', category:'Management', keys:'RENDER', desc:'Generate photorealistic image of 3D model' },
   { key:'MEASUREGEOM', name:'Measure Geometry', category:'Management', keys:'MEA', desc:'Measure distance, radius, angle, area, volume' },
+  { key:'MEASURE', name:'Measure', category:'Management', keys:'ME', desc:'Place points or blocks at measured intervals along objects' },
   { key:'DIST', name:'Distance', category:'Management', keys:'DI', desc:'Measure distance and angle between two points' },
   { key:'AREA', name:'Area', category:'Management', keys:'AA', desc:'Calculate area and perimeter of objects' },
   { key:'LIST', name:'List', category:'Management', keys:'LI', desc:'Display database info for selected objects' },
@@ -856,14 +888,11 @@ const $sectionTitle = document.getElementById('sectionTitle');
 const $sectionSubtitle = document.getElementById('sectionSubtitle');
 
 // ─── Helpers ────────────────────────────────────────────────────
+// Exact-match only. A clip borrowed from a similarly-named command (e.g. DIMBASELINE
+// inheriting DIM, SELECTIONCYCLING inheriting SELECT) plays the WRONG tutorial —
+// which is worse than honestly showing no clip.
 function getVideo(cmd) {
-  const entry = VIDEO_DB[cmd.key] || VIDEO_DB[cmd.key.toUpperCase()];
-  if (entry) return entry;
-  // Try alternate key aliases
-  for (const k of Object.keys(VIDEO_DB)) {
-    if (cmd.key.startsWith(k) || k.startsWith(cmd.key)) return VIDEO_DB[k];
-  }
-  return FALLBACK_VIDEO;
+  return VIDEO_DB[cmd.key] || VIDEO_DB[cmd.key.toUpperCase()] || null;
 }
 
 function fmtTime(s) {
@@ -940,16 +969,25 @@ function renderGrid() {
 
   items.forEach((cmd, i) => {
     const v = getVideo(cmd);
-    const dur = v.end - v.start;
     const card = document.createElement('div');
     card.className = 'card';
     card.style.animationDelay = (Math.min(i, 30) * 0.02) + 's';
+
+    const thumb = v
+      ? `<div class="card-thumb" data-video="${v.videoId}" data-start="${v.start}" data-end="${v.end}" data-cmd="${cmd.key}" data-title="${v.title || cmd.name}">
+          <img src="${thumbUrl(v.videoId)}" alt="" loading="lazy" onerror="this.style.display='none'">
+          <div class="play-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
+          <div class="clip-time">${fmtTime(v.end - v.start)}s</div>
+        </div>`
+      : `<div class="card-thumb no-video" data-cmd="${cmd.key}" data-title="${cmd.name}" title="No clip yet — click to search YouTube">
+          <div class="no-clip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5h.01M14.5 9.5h.01M9 15c1-1 2-1.5 3-1.5s2 .5 3 1.5"/></svg>
+            <span>No clip</span>
+          </div>
+        </div>`;
+
     card.innerHTML = `
-      <div class="card-thumb" data-video="${v.videoId}" data-start="${v.start}" data-end="${v.end}" data-title="${v.title || cmd.name}">
-        <img src="${thumbUrl(v.videoId)}" alt="" loading="lazy" onerror="this.style.display='none'">
-        <div class="play-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
-        <div class="clip-time">${fmtTime(dur)}s</div>
-      </div>
+      ${thumb}
       <div class="card-body">
         <div class="card-cmd">${cmd.key}</div>
         <div class="card-name">${cmd.name}</div>
@@ -963,15 +1001,24 @@ function renderGrid() {
     $grid.appendChild(card);
   });
 
-  // Bind events
-  $grid.querySelectorAll('.card-thumb').forEach(el => {
+  // Bind events — real clips open the modal player
+  $grid.querySelectorAll('.card-thumb[data-video]').forEach(el => {
     el.addEventListener('click', () => {
       openModal({
         videoId: el.dataset.video,
         start: parseInt(el.dataset.start),
         end: parseInt(el.dataset.end),
-        title: el.dataset.title
+        title: el.dataset.title,
+        cmdKey: el.dataset.cmd
       });
+    });
+  });
+
+  // No-clip cards send the user to a YouTube search for that exact command
+  $grid.querySelectorAll('.card-thumb.no-video').forEach(el => {
+    el.addEventListener('click', () => {
+      const q = encodeURIComponent(el.dataset.cmd + ' AutoCAD command tutorial');
+      window.open('https://www.youtube.com/results?search_query=' + q, '_blank', 'noopener');
     });
   });
 
@@ -998,7 +1045,7 @@ let ytPlayer = null;
 
 function openModal(video) {
   currentCmd = video;
-  $modalCmd.textContent = (currentSearch ? '' : (COMMANDS.find(c => getVideo(c).videoId === video.videoId)?.key || '')) + ' clip';
+  $modalCmd.textContent = (video.cmdKey || '') + ' clip';
   $modalName.textContent = video.title || 'Tutorial';
   $modalTime.textContent = fmtTime(video.start) + ' – ' + fmtTime(video.end) + ' (' + (video.end - video.start) + 's)';
   $modalOverlay.classList.add('open');

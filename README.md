@@ -2,7 +2,7 @@
 
 Live site: https://darthsandd.github.io/autocad-guide/ (GitHub Pages, serves `index.html`).
 
-Single-file reference for AutoCAD: 90+ commands across 8 categories (Draw, Modify,
+Single-file reference for AutoCAD: 126 commands across 8 categories (Drawing, Modify,
 Annotation, Layers, View, Dimension, Block, Misc) with hotkey, alias, description,
 and a curated YouTube clip per command — press play on any card to open the clip at
 its exact start/end timestamp in a modal player.
@@ -13,7 +13,16 @@ its exact start/end timestamp in a modal player.
 - Copy-to-clipboard per command (hotkey / alias)
 - Sidebar navigation + scroll progress bar
 - Modal YouTube player (single iframe, loads at exact start second, stops at end time)
+- Honest "No clip" state: commands without a curated clip show a placeholder that
+  opens a YouTube search for that exact command, instead of playing a mismatched video
 - Responsive, keyboard-navigable, toast notifications
+
+## Coverage
+
+- 126 commands, 79 with a curated clip, 47 with no clip yet.
+- Video lookup is **exact-match only**. A clip is never borrowed from a
+  similarly-named command (e.g. DIMBASELINE inheriting DIM), because playing the
+  wrong tutorial is worse than showing none.
 
 ## Notes
 
