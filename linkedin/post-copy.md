@@ -7,31 +7,39 @@
 
 ## ⭐ CAPTION (matched to the carousel — use this with the 7 slides)
 
-Walks the same 7 beats as the slides, in order.
+Walks the same 7 beats as the slides, in order. Written third-person and
+benefit-first: no "I" narrative, nothing that frames the author as a beginner.
 
 ---
 
-I still Google basic AutoCAD commands. All the time.
+Most AutoCAD drawings take longer than they should.
 
-Not the complicated ones. Just the basics.
+Not because the drafter is slow. Because half the commands get typed out in full when a two-letter hotkey does the same thing.
 
-You need one command. You open YouTube. You sit through 30 seconds of intro to get to the 20 seconds you actually needed. Then you forget to bookmark it and do the same thing next week.
+126 commands on one page. Hotkey, a one-line description, and a clip that starts at the exact second it's explained. No intros. No 40-minute tutorials.
 
-So I built the thing I kept wishing existed.
+8 categories, and search that actually works. Type "offset", "O", or "space between walls" and it finds the same command.
 
-126 commands on one page. 8 categories. Each one has its hotkey, a one-line description, and a clip that starts at the exact second it's explained.
-
-It works on your phone too. No app, no signup, no email. Just a web page.
+Works on your phone. No app, no signup, no email.
 
 Slide 5 has the 12 hotkeys that do most of the work. If you only ever learn 12, learn those.
 
-I checked every video by hand. One was deleted and still linked to 6 different commands. Another was about something completely unrelated. Fixed both. There's one command I couldn't find a good clip for, so the card just says "no clip." I'd rather it say that than play the wrong thing.
+Every video link was checked by hand. One had been deleted and was still linked to 6 commands. Another was about something completely unrelated. Both fixed. For the one command with no decent clip available, the card says "no clip" rather than playing the wrong thing.
 
-It's free. Bookmark it and save yourself the next search.
+Free. Bookmark it and save yourself the next search.
 
-Which command do you reach for most? I'm still finding ones I've been typing the long way for years.
+What's the one command you still type the long way?
 
 #AutoCAD #CAD #Drafting
+
+### Alternative opening lines (swap the first two lines for any of these)
+
+- **A.** Most AutoCAD drawings take longer than they should. Not because the drafter is slow — because half the commands get typed out in full when a two-letter hotkey does the same thing. *(current)*
+- **B.** 126 AutoCAD commands. Every hotkey, every description, and a clip that starts at the exact second it's explained. One page.
+- **C.** The fastest AutoCAD drafters aren't faster because they know more commands. They're faster because they stopped typing them out in full.
+- **D.** If you're still typing "OFFSET" instead of "O", this is for you.
+
+Each one drops straight into the caption body above.
 
 ---
 
