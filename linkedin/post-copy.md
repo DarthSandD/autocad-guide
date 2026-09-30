@@ -7,28 +7,31 @@
 
 ## ⭐ CAPTION (matched to the carousel — use this with the 7 slides)
 
-Written to walk the same 7 beats as the slides, so the text and the images
-move together. One short paragraph per slide.
+Walks the same 7 beats as the slides, in order.
 
 ---
 
-I've been doing electrical and MEP drawings for years and I still Google basic AutoCAD commands.
+I still Google basic AutoCAD commands. All the time.
 
-Not the hard stuff. The basic stuff. You need one command, you open YouTube, and you sit through 30 seconds of intro to find the 20 seconds you actually needed. Then you do it again next week, because you forgot to bookmark it.
+Not the complicated ones. Just the basics.
 
-So I built the thing I kept wishing existed. 126 commands, 8 categories, one page. Hotkey, a one-line description, and a short clip that starts at the exact second the command gets explained. Not a full tutorial — just the part you need.
+You need one command. You open YouTube. You sit through 30 seconds of intro to get to the 20 seconds you actually needed. Then you forget to bookmark it and do the same thing next week.
 
-And it works on your phone, which is honestly where I end up looking this stuff up. No app, no signup, no email. It's a web page.
+So I built the thing I kept wishing existed.
 
-The 12 hotkeys on slide 5 are the ones that do most of the work. If you only ever learn 12, learn those.
+126 commands on one page. 8 categories. Each one has its hotkey, a one-line description, and a clip that starts at the exact second it's explained.
 
-One thing I want to be straight about: I checked every single video by hand. That sounds like overkill until you find a deleted video linked to 6 different commands, or a clip about a completely unrelated topic. Both were in there. For the one command I couldn't find a decent clip for, the card just says "no clip" — I'd rather it say that than quietly play the wrong thing.
+It works on your phone too. No app, no signup, no email. Just a web page.
+
+Slide 5 has the 12 hotkeys that do most of the work. If you only ever learn 12, learn those.
+
+I checked every video by hand. One was deleted and still linked to 6 different commands. Another was about something completely unrelated. Fixed both. There's one command I couldn't find a good clip for, so the card just says "no clip." I'd rather it say that than play the wrong thing.
 
 It's free. Bookmark it and save yourself the next search.
 
-Which command do you reach for most? I'm still finding ones I've typed the long way for years.
+Which command do you reach for most? I'm still finding ones I've been typing the long way for years.
 
-#AutoCAD #MEP #Drafting #CAD
+#AutoCAD #CAD #Drafting
 
 ---
 
