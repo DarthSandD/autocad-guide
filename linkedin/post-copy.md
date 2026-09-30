@@ -24,7 +24,7 @@ Works on your phone. No app, no signup, no email.
 
 Slide 5 has the 12 hotkeys that do most of the work. If you only ever learn 12, learn those.
 
-Every video link was checked by hand. One had been deleted and was still linked to 6 commands. Another was about something completely unrelated. Both fixed. For the one command with no decent clip available, the card says "no clip" rather than playing the wrong thing.
+Every video link was checked by hand. One had been deleted and was still linked to 4 commands. Another was about something completely unrelated. Both fixed. For the one command with no decent clip available, the card says "no clip" rather than playing the wrong thing.
 
 Free. Bookmark it and save yourself the next search.
 
@@ -65,7 +65,7 @@ Search has to actually work. You can type "offset", or "O", or "space between wa
 
 It's one HTML file. No framework, no build step, no login, no newsletter popup. It opens instantly, and it works on your phone, which is honestly where I end up looking this stuff up.
 
-And I checked every video link by hand. That sounds like overkill, but it caught something real: one video had been deleted and it was linked to 6 different commands. Anyone clicking those got a broken player. Another one was about a completely unrelated topic.
+And I checked every video link by hand. That sounds like overkill, but it caught something real: one video had been deleted and it was linked to 4 different commands. Anyone clicking those got a broken player. Another one was about a completely unrelated topic.
 
 For the commands I couldn't find a decent clip for, the card just says "no clip". I'd rather it say that than quietly play the wrong thing.
 
@@ -125,5 +125,5 @@ The post above opens on a small admission instead of a claim, uses plain sentenc
 3. "126 commands. 8 categories. One page." over a desktop screenshot showing the search bar, category sidebar and command cards.
 4. "Because that's where you actually look things up" beside a phone-width screenshot of the guide.
 5. The 12 most-used hotkeys: L, C, M, CO, TR, EX, O, MI, F, AR, RO, SC.
-6. "I checked every video one by one" — one dead video was linked to 6 commands, another pointed at an unrelated topic.
+6. "I checked every video one by one" — one dead video was linked to 4 commands, another pointed at an unrelated topic.
 7. "Bookmark it. Save yourself the next search." with darthsandd.github.io/autocad-guide.
