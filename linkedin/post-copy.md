@@ -5,7 +5,40 @@
 
 ---
 
-## MAIN POST (use this)
+## ⭐ CAPTION (matched to the carousel — use this with the 7 slides)
+
+Written to walk the same 7 beats as the slides, so the text and the images
+move together. One short paragraph per slide.
+
+---
+
+I've been doing electrical and MEP drawings for years and I still Google basic AutoCAD commands.
+
+Not the hard stuff. The basic stuff. You need one command, you open YouTube, and you sit through 30 seconds of intro to find the 20 seconds you actually needed. Then you do it again next week, because you forgot to bookmark it.
+
+So I built the thing I kept wishing existed. 126 commands, 8 categories, one page. Hotkey, a one-line description, and a short clip that starts at the exact second the command gets explained. Not a full tutorial — just the part you need.
+
+And it works on your phone, which is honestly where I end up looking this stuff up. No app, no signup, no email. It's a web page.
+
+The 12 hotkeys on slide 5 are the ones that do most of the work. If you only ever learn 12, learn those.
+
+One thing I want to be straight about: I checked every single video by hand. That sounds like overkill until you find a deleted video linked to 6 different commands, or a clip about a completely unrelated topic. Both were in there. For the one command I couldn't find a decent clip for, the card just says "no clip" — I'd rather it say that than quietly play the wrong thing.
+
+It's free. Bookmark it and save yourself the next search.
+
+Which command do you reach for most? I'm still finding ones I've typed the long way for years.
+
+#AutoCAD #MEP #Drafting #CAD
+
+---
+
+**First comment** (put the link here, not in the post — LinkedIn throttles reach on body links):
+
+> Link: darthsandd.github.io/autocad-guide
+
+---
+
+## MAIN POST (longer, standalone — no carousel needed)
 
 I've been doing electrical and MEP drawings for years and I still Google basic AutoCAD commands.
 
