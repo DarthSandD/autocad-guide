@@ -3,233 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --bg:#0a0c10; --surface:#12151a; --surface-2:#181d24; --border:#1f2730;
     --text:#e8ecf1; --text-2:#8892a0; --text-3:#5a6470;
-    --accent:#00e5ff; --accent-dim:#00b8cc; --accent-glow:rgba(0,229,255,.15);
-    --orange:#ff9f1c;
+    --accent:#00e5ff; --orange:#ff9f1c;
   }
-  body{ background:#000; font-family:'Inter',sans-serif; }
-
+  body{background:#000;font-family:'Inter',sans-serif}
   .slide{
-    width:1080px; height:1080px; position:relative; overflow:hidden;
-    background:var(--bg); color:var(--text);
-    display:flex; flex-direction:column;
-    padding:88px 80px;
+    width:1080px;height:1080px;position:relative;overflow:hidden;
+    background:var(--bg);color:var(--text);display:flex;flex-direction:column;
+    padding:76px 72px;
   }
-  /* subtle grid, matches the site */
   .slide::before{
-    content:''; position:absolute; inset:0;
-    background-image:linear-gradient(rgba(0,229,255,.035) 1px, transparent 1px),
-                     linear-gradient(90deg, rgba(0,229,255,.035) 1px, transparent 1px);
-    background-size:60px 60px; pointer-events:none;
+    content:'';position:absolute;inset:0;
+    background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);
+    background-size:64px 64px;pointer-events:none;
   }
-  .slide::after{
-    content:''; position:absolute; width:820px; height:820px; border-radius:50%;
-    background:radial-gradient(circle, var(--accent-glow) 0%, transparent 68%);
-    top:-340px; right:-300px; pointer-events:none;
-  }
-  .inner{ position:relative; z-index:2; display:flex; flex-direction:column; height:100%; }
-
-  /* ---------- shared chrome ---------- */
-  .kicker{
-    display:inline-flex; align-items:center; gap:12px;
-    font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:700;
-    letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
-  }
-  .kicker .dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 14px var(--accent); }
+  .inner{position:relative;z-index:2;display:flex;flex-direction:column;height:100%}
   .foot{
-    margin-top:auto; display:flex; align-items:center; justify-content:space-between;
-    font-family:'JetBrains Mono',monospace; font-size:19px; color:var(--text-3);
-    border-top:1px solid var(--border); padding-top:26px;
+    margin-top:auto;display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--text-3);
+    border-top:1px solid var(--border);padding-top:22px;
   }
-  .foot b{ color:var(--text-2); font-weight:500; }
-  .num{ color:var(--accent); font-weight:700; }
+  .foot .n{color:var(--accent);font-weight:700}
+  h1{font-size:82px;font-weight:900;line-height:1.05;letter-spacing:-.035em}
+  h2{font-size:60px;font-weight:800;line-height:1.12;letter-spacing:-.03em}
+  .hl{color:var(--accent)}
+  p{font-size:29px;color:var(--text-2);line-height:1.55;font-weight:400}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+    display:flex;align-items:center;gap:11px;margin-bottom:26px;
+  }
+  .tag i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);font-style:normal}
 
-  /* ---------- slide 1 : cover ---------- */
-  .s1 h1{
-    font-size:104px; font-weight:900; line-height:1.02; letter-spacing:-.035em; margin:auto 0 0;
+  /* browser chrome frame around a real screenshot */
+  .frame{
+    border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    background:var(--surface);box-shadow:0 24px 60px rgba(0,0,0,.55);
   }
-  .s1 h1 .hl{ color:var(--accent); display:block; }
-  .s1 .sub{ font-size:31px; color:var(--text-2); font-weight:400; line-height:1.45; margin-top:34px; max-width:800px; }
-  .s1 .badge{
-    margin-top:44px; display:flex; gap:14px; flex-wrap:wrap;
+  .bar{
+    height:42px;background:var(--surface-2);display:flex;align-items:center;gap:8px;
+    padding:0 18px;border-bottom:1px solid var(--border);
   }
-  .chip{
-    font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:600;
-    padding:11px 20px; border-radius:999px; border:1px solid var(--border);
-    background:var(--surface); color:var(--text-2);
+  .bar span{width:11px;height:11px;border-radius:50%;background:#2b333d}
+  .bar .url{
+    margin-left:14px;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text-3);
+    background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:4px 14px;
   }
-  .chip.on{ border-color:var(--accent-dim); color:var(--accent); background:rgba(0,229,255,.07); }
+  .frame img{display:block;width:100%}
 
-  /* ---------- section slides ---------- */
-  .stitle{ font-size:70px; font-weight:800; letter-spacing:-.03em; line-height:1.08; margin-top:30px; }
-  .stitle .hl{ color:var(--accent); }
-  .sdesc{ font-size:26px; color:var(--text-2); margin-top:20px; line-height:1.5; max-width:860px; }
+  /* hotkey list */
+  .keys{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .k{display:flex;align-items:center;gap:17px;background:var(--surface);
+     border:1px solid var(--border);border-radius:13px;padding:15px 20px}
+  .k b{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;
+       background:var(--accent);color:var(--bg);border-radius:9px;min-width:92px;
+       text-align:center;padding:9px 12px}
+  .k.o b{background:var(--orange)}
+  .k div{font-size:25px;font-weight:600}
 
-  /* hotkey grid */
-  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:44px; }
-  .row{
-    display:flex; align-items:center; gap:20px;
-    background:var(--surface); border:1px solid var(--border);
-    border-radius:16px; padding:20px 24px;
-  }
-  .key{
-    font-family:'JetBrains Mono',monospace; font-size:27px; font-weight:700;
-    color:var(--bg); background:var(--accent); border-radius:10px;
-    min-width:104px; text-align:center; padding:12px 14px; letter-spacing:.02em;
-  }
-  .key.alt{ background:var(--orange); }
-  .rname{ font-size:27px; font-weight:600; letter-spacing:-.01em; }
-  .rdesc{ font-size:19px; color:var(--text-3); margin-top:3px; }
-
-  /* stat slides */
-  .stats{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
-  .stat{
-    background:var(--surface); border:1px solid var(--border); border-radius:20px;
-    padding:38px 34px; display:flex; flex-direction:column; gap:8px;
-  }
-  .stat .v{ font-size:82px; font-weight:900; letter-spacing:-.04em; color:var(--accent); line-height:1; }
-  .stat .v.o{ color:var(--orange); }
-  .stat .l{ font-size:23px; color:var(--text-2); font-weight:500; }
-
-  /* compact stats for the 8-category slide */
-  .stats.compact{ margin-top:26px; gap:14px; }
-  .stats.compact .stat{ padding:20px 24px; gap:2px; border-radius:16px; }
-  .stats.compact .stat .v{ font-size:46px; }
-  .stats.compact .stat .l{ font-size:20px; line-height:1.35; }
-
-  /* cta */
+  /* big statement */
+  .big{font-size:64px;font-weight:800;line-height:1.14;letter-spacing:-.03em;margin-top:auto;margin-bottom:auto}
   .cta{
-    margin-top:auto; background:linear-gradient(135deg, rgba(0,229,255,.13), rgba(255,159,28,.09));
-    border:1px solid var(--accent-dim); border-radius:22px; padding:44px 46px;
+    margin-top:auto;border:1px solid #00b8cc;border-radius:20px;padding:40px 42px;
+    background:linear-gradient(135deg,rgba(0,229,255,.12),rgba(255,159,28,.07));
   }
-  .cta h3{ font-size:44px; font-weight:800; letter-spacing:-.02em; }
-  .cta p{ font-size:26px; color:var(--text-2); margin-top:14px; line-height:1.5; }
-  .cta .url{ font-family:'JetBrains Mono',monospace; font-size:26px; color:var(--accent); margin-top:22px; font-weight:700; }
+  .cta h3{font-size:40px;font-weight:800;letter-spacing:-.02em}
+  .cta p{font-size:25px;margin-top:12px}
+  .cta .u{font-family:'JetBrains Mono',monospace;font-size:26px;color:var(--accent);
+          font-weight:700;margin-top:18px}
 </style>
 </head>
 <body>
 
-<!-- ============ SLIDE 1 — COVER ============ -->
-<div class="slide s1" id="s1">
+<!-- 1 — HOOK (real screenshot, phone in hand vibe) -->
+<div class="slide" id="s1">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>AutoCAD · Free Reference</div>
-    <h1>Every AutoCAD<span class="hl">hotkey &amp; command</span>you actually use.</h1>
-    <p class="sub">126 commands across 8 categories — each one with its hotkey, alias and a curated video clip at the exact timestamp.</p>
-    <div class="badge">
-      <span class="chip on">126 commands</span>
-      <span class="chip">8 categories</span>
-      <span class="chip">125 video clips</span>
-      <span class="chip">Free · no signup</span>
+    <div class="tag"><i></i>The whole reason</div>
+    <h1>I got tired of<br>Googling AutoCAD<br><span class="hl">commands.</span></h1>
+    <p style="margin-top:30px;max-width:760px">So I put all 126 of them on one page, each one with the 20 seconds of video that actually matters.</p>
+    <div class="frame" style="margin-top:auto">
+      <div class="bar"><span></span><span></span><span></span><div class="url">darthsandd.github.io/autocad-guide</div></div>
+      <img src="shots/crop-desktop.png" alt="The guide">
     </div>
-    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">01 / 07</span></div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">1 / 7</span></div>
   </div>
 </div>
 
-<!-- ============ SLIDE 2 — THE PROBLEM ============ -->
+<!-- 2 — THE PROBLEM (no screenshot, pure text, human) -->
 <div class="slide" id="s2">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>The Problem</div>
-    <h2 class="stitle">You don't lose hours to AutoCAD.<br>You lose them to <span class="hl">the ribbon</span>.</h2>
-    <p class="sdesc">Every command you hunt through a menu is a command you already knew. The speed was always in the keyboard — it just was never in one place.</p>
-    <div class="stats">
-      <div class="stat"><span class="v">3&nbsp;min</span><span class="l">Average time lost hunting one tool in the ribbon</span></div>
-      <div class="stat"><span class="v o">60+</span><span class="l">Commands a working drafter uses every single day</span></div>
-      <div class="stat"><span class="v">2×</span><span class="l">Drafting speed once the keyboard becomes muscle memory</span></div>
-      <div class="stat"><span class="v o">0</span><span class="l">Reference sheets that survived contact with a real deadline</span></div>
+    <div class="tag"><i></i>Sound familiar?</div>
+    <div class="big">
+      You need one command.<br>
+      You open YouTube.<br>
+      You sit through <span class="hl">30 seconds of intro</span><br>
+      to find the <span class="hl">20 seconds</span> you needed.
     </div>
-    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">02 / 07</span></div>
+    <p>Then you do it again next week, because you forgot to bookmark it.</p>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">2 / 7</span></div>
   </div>
 </div>
 
-<!-- ============ SLIDE 3 — TOP HOTKEYS ============ -->
+<!-- 3 — THE SITE (real desktop screenshot) -->
 <div class="slide" id="s3">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>The Essentials</div>
-    <h2 class="stitle">The <span class="hl">12 hotkeys</span> that carry 80% of your drawing.</h2>
-    <div class="grid">
-      <div class="row"><span class="key">L</span><div><div class="rname">Line</div><div class="rdesc">Straight segments</div></div></div>
-      <div class="row"><span class="key">C</span><div><div class="rname">Circle</div><div class="rdesc">Centre + radius</div></div></div>
-      <div class="row"><span class="key">M</span><div><div class="rname">Move</div><div class="rdesc">Relocate objects</div></div></div>
-      <div class="row"><span class="key">CO</span><div><div class="rname">Copy</div><div class="rdesc">Duplicate at offset</div></div></div>
-      <div class="row"><span class="key alt">TR</span><div><div class="rname">Trim</div><div class="rdesc">Cut at edges</div></div></div>
-      <div class="row"><span class="key alt">EX</span><div><div class="rname">Extend</div><div class="rdesc">Lengthen to boundary</div></div></div>
-      <div class="row"><span class="key">O</span><div><div class="rname">Offset</div><div class="rdesc">Parallel copies</div></div></div>
-      <div class="row"><span class="key">MI</span><div><div class="rname">Mirror</div><div class="rdesc">Symmetric copy</div></div></div>
-      <div class="row"><span class="key alt">F</span><div><div class="rname">Fillet</div><div class="rdesc">Rounded corner</div></div></div>
-      <div class="row"><span class="key alt">AR</span><div><div class="rname">Array</div><div class="rdesc">Pattern copies</div></div></div>
-      <div class="row"><span class="key">RO</span><div><div class="rname">Rotate</div><div class="rdesc">Angle about a base</div></div></div>
-      <div class="row"><span class="key">SC</span><div><div class="rname">Scale</div><div class="rdesc">Uniform resize</div></div></div>
+    <div class="tag"><i></i>So I built this</div>
+    <h2>126 commands.<br>8 categories. <span class="hl">One page.</span></h2>
+    <div class="frame" style="margin-top:34px">
+      <div class="bar"><span></span><span></span><span></span><div class="url">darthsandd.github.io/autocad-guide</div></div>
+      <img src="shots/crop-desktop2.png" alt="Desktop view">
     </div>
-    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">03 / 07</span></div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">3 / 7</span></div>
   </div>
 </div>
 
-<!-- ============ SLIDE 4 — WHAT'S INSIDE ============ -->
+<!-- 4 — MOBILE (real mobile screenshot) -->
 <div class="slide" id="s4">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>What's Inside</div>
-    <h2 class="stitle">Eight categories.<br>One page. <span class="hl">Zero clutter.</span></h2>
-    <div class="stats compact">
-      <div class="stat"><span class="v">20</span><span class="l">Drawing — lines, arcs, splines, hatch</span></div>
-      <div class="stat"><span class="v">24</span><span class="l">Modifying — move, trim, fillet, array</span></div>
-      <div class="stat"><span class="v">18</span><span class="l">Layers — isolate, freeze, match, purge</span></div>
-      <div class="stat"><span class="v">17</span><span class="l">Management — plot, audit, recover</span></div>
-      <div class="stat"><span class="v">15</span><span class="l">Annotation — text, dims, leaders</span></div>
-      <div class="stat"><span class="v">13</span><span class="l">Settings — osnap, ortho, units</span></div>
-      <div class="stat"><span class="v">10</span><span class="l">Blocks — insert, xref, edit in place</span></div>
-      <div class="stat"><span class="v">9</span><span class="l">Navigation — zoom, pan, viewports</span></div>
+    <div class="tag"><i></i>And on your phone</div>
+    <h2>Because that's where<br>you <span class="hl">actually</span> look things up.</h2>
+    <div style="display:flex;gap:36px;margin-top:38px;align-items:flex-start">
+      <div class="frame" style="width:392px;flex:0 0 auto">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <img src="shots/mobile-true.png" alt="Mobile view">
+      </div>
+      <div style="padding-top:26px">
+        <p style="font-size:27px">Search, filter, copy the command, hit play.</p>
+        <p style="font-size:27px;margin-top:20px">No app. No signup. No email.</p>
+        <p style="font-size:27px;margin-top:20px">It's a web page. It just works.</p>
+      </div>
     </div>
-    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">04 / 07</span></div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">4 / 7</span></div>
   </div>
 </div>
 
-<!-- ============ SLIDE 5 — HOW IT WORKS ============ -->
+<!-- 5 — HOTKEYS -->
 <div class="slide" id="s5">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>How It Works</div>
-    <h2 class="stitle">Search it. Copy it.<br><span class="hl">Watch it.</span></h2>
-    <div class="stats">
-      <div class="stat"><span class="v">01</span><span class="l"><b>Search or filter</b> — type a name, an alias or a description; results narrow instantly.</span></div>
-      <div class="stat"><span class="v">02</span><span class="l"><b>Copy the command</b> — one click puts the exact command string on your clipboard.</span></div>
-      <div class="stat"><span class="v">03</span><span class="l"><b>Press play</b> — each card opens a curated clip at the exact start second and stops at the end.</span></div>
-      <div class="stat"><span class="v o">04</span><span class="l"><b>No dead ends</b> — every video is verified live, so a link never plays the wrong thing.</span></div>
+    <div class="tag"><i></i>Start here</div>
+    <h2>The <span class="hl">12 hotkeys</span> that do<br>most of the work.</h2>
+    <div class="keys">
+      <div class="k"><b>L</b><div>Line</div></div>
+      <div class="k"><b>C</b><div>Circle</div></div>
+      <div class="k"><b>M</b><div>Move</div></div>
+      <div class="k"><b>CO</b><div>Copy</div></div>
+      <div class="k o"><b>TR</b><div>Trim</div></div>
+      <div class="k o"><b>EX</b><div>Extend</div></div>
+      <div class="k"><b>O</b><div>Offset</div></div>
+      <div class="k"><b>MI</b><div>Mirror</div></div>
+      <div class="k o"><b>F</b><div>Fillet</div></div>
+      <div class="k o"><b>AR</b><div>Array</div></div>
+      <div class="k"><b>RO</b><div>Rotate</div></div>
+      <div class="k"><b>SC</b><div>Scale</div></div>
     </div>
-    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">05 / 07</span></div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">5 / 7</span></div>
   </div>
 </div>
 
-<!-- ============ SLIDE 6 — BUILT DIFFERENT ============ -->
+<!-- 6 — THE HONEST BIT -->
 <div class="slide" id="s6">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>Built Different</div>
-    <h2 class="stitle">Not a PDF. Not a blog post.<br><span class="hl">A single file.</span></h2>
-    <p class="sdesc">No framework, no build step, no backend, no dependencies. One HTML file that loads instantly and works offline once open.</p>
-    <div class="stats">
-      <div class="stat"><span class="v">1</span><span class="l">File — the entire guide</span></div>
-      <div class="stat"><span class="v o">0</span><span class="l">Dependencies or trackers</span></div>
-      <div class="stat"><span class="v">125</span><span class="l">Video clips, each verified live</span></div>
-      <div class="stat"><span class="v o">∞</span><span class="l">Free to use, share and keep</span></div>
+    <div class="tag"><i></i>The boring part nobody sees</div>
+    <div class="big">
+      I checked <span class="hl">every video</span><br>one by one.
     </div>
-    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">06 / 07</span></div>
+    <p style="max-width:840px">One of them was dead — and it was linked to 6 different commands. Another one pointed at a completely unrelated topic.</p>
+    <p style="max-width:840px;margin-top:18px">Both were playing silently to anyone who clicked. So I replaced them, and made the rest say <span class="hl">"no clip"</span> instead of quietly playing the wrong thing.</p>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">6 / 7</span></div>
   </div>
 </div>
 
-<!-- ============ SLIDE 7 — CTA ============ -->
+<!-- 7 — CTA -->
 <div class="slide" id="s7">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>Try It Now</div>
-    <h2 class="stitle">Bookmark it.<br>Then <span class="hl">stop hunting menus.</span></h2>
-    <p class="sdesc">Built for drafters and MEP engineers who'd rather draw than dig through the ribbon. It's free, it's fast, and it's one click away.</p>
+    <div class="tag"><i></i>Free, if you want it</div>
+    <h2>Bookmark it.<br>Save yourself the <span class="hl">next search.</span></h2>
     <div class="cta">
       <h3>AutoCAD Hotkey &amp; Command Guide</h3>
-      <p>126 commands · 8 categories · 125 video clips — all in one page.</p>
-      <div class="url">darthsandd.github.io/autocad-guide</div>
+      <p>126 commands · 8 categories · 125 clips at the exact timestamp.</p>
+      <div class="u">darthsandd.github.io/autocad-guide</div>
     </div>
-    <div class="foot"><b>Built by Darren Lieu</b><span class="num">07 / 07</span></div>
+    <p style="margin-top:30px;font-size:26px">What's the one command you still type the long way?<br>I'll bet there's a hotkey for it.</p>
+    <div class="foot"><span>Built by Darren Lieu</span><span class="n">7 / 7</span></div>
   </div>
 </div>
 

@@ -1,88 +1,85 @@
 # LinkedIn Post — AutoCAD Hotkey & Command Guide
 
-## Option A — Story-led (recommended)
-
-I watched a senior drafter lose an afternoon to a menu.
-
-Not a hard drawing. Not a complex detail. Just hunting for commands he already knew, one ribbon tab at a time.
-
-So I built the thing that should have existed: every AutoCAD hotkey and command in one page.
-
-**126 commands. 8 categories. 125 curated video clips.**
-
-Search it, copy the command, watch the exact clip. That's it.
-
-Two things I refused to compromise on:
-
-→ **No dead links.** Every single video is verified live before it ships. If a clip doesn't exist, the card says so honestly instead of playing something unrelated.
-
-→ **No bloat.** One HTML file. No framework, no build step, no backend, no trackers. It loads instantly and works offline once open.
-
-Built for drafters and MEP engineers who'd rather draw than dig through the ribbon.
-
-It's free. No signup, no email gate.
-
-👉 darthsandd.github.io/autocad-guide
-
-Which command do you still type the long way? I'll bet there's a hotkey for it.
-
-#AutoCAD #MEP #Engineering #Drafting #CAD #MEPEngineering #Productivity #AEC
+> Carousel: upload `slide-1.png` … `slide-7.png` in order.
+> (v2 slides — the ones with real screenshots of the site.)
 
 ---
 
-## Option B — Short & punchy
+## MAIN POST (use this)
 
-Every AutoCAD hotkey you actually use. In one page.
+I've been doing electrical and MEP drawings for years and I still Google basic AutoCAD commands.
 
-126 commands · 8 categories · 125 video clips at the exact timestamp.
+Not the hard stuff. The basic stuff. "What's the shortcut for offset again." Then you land on a 40-minute video and scrub around hunting for the 15 seconds you actually needed.
 
-Search it. Copy it. Watch it.
+So I made the thing I kept wishing existed.
 
-No signup. No bloat. One HTML file.
+One web page with 126 AutoCAD commands. Each one has the hotkey, a one-line description, and a short video clip that starts at the exact second the command gets explained. Not a full tutorial. Just the part you need.
 
-👉 darthsandd.github.io/autocad-guide
+A few things I cared about:
 
-What's the one command you wish you'd learned years earlier?
+Search has to actually work. You can type "offset", or "O", or "space between walls" and it finds it.
 
-#AutoCAD #MEP #CAD #Drafting #Engineering #Productivity
+It's one HTML file. No framework, no build step, no login, no newsletter popup. It opens instantly, and it works on your phone, which is honestly where I end up looking this stuff up.
 
----
+And I checked every video link by hand. That sounds like overkill, but it caught something real: one video had been deleted and it was linked to 6 different commands. Anyone clicking those got a broken player. Another one was about a completely unrelated topic.
 
-## Option C — Builder/technical angle (for the AI-architect positioning)
+For the commands I couldn't find a decent clip for, the card just says "no clip". I'd rather it say that than quietly play the wrong thing.
 
-I shipped a reference guide with zero dependencies, and it's the most useful thing I've built this month.
+It's free and there's no signup.
 
-AutoCAD has ~126 commands a working drafter touches. The knowledge is scattered across forums, 40-minute YouTube videos, and PDFs nobody opens.
+darthsandd.github.io/autocad-guide
 
-So I made one page: search, copy, watch.
-
-The engineering decisions that mattered:
-
-**1. One HTML file.** No framework, no build step, no backend. Deploys to GitHub Pages as-is and works offline once loaded. The whole thing is 50KB.
-
-**2. Verified data, not scraped data.** I audited every video link live against YouTube — title and duration — before it shipped. That surfaced a dead video mapped to 6 commands and a clip pointed at a completely unrelated topic. Both would have shipped silently in a "just scrape it" build.
-
-**3. Honest empty states.** 47 commands had no clip. The lazy move is to fall back to a generic tutorial and hope nobody notices. I made them say "No clip" instead and link to a search. Playing the wrong tutorial is worse than playing none.
-
-Result: 125 of 126 commands with a real, working clip.
-
-👉 darthsandd.github.io/autocad-guide
-
-#AutoCAD #MEP #SoftwareEngineering #AIArchitecture #CAD #Drafting
+Which command do you reach for most? I'm still finding ones I've typed the long way for years.
 
 ---
 
-## Posting notes
+## SHORTER VERSION (if you want it tight)
 
-- **Upload as a carousel:** LinkedIn shows a swipeable document post — select all 7 PNGs in order (slide-1 → slide-7).
-- **Aspect ratio:** all slides are 1080×1080 (1:1), which LinkedIn renders well on both mobile and desktop.
-- **Best time:** Tue–Thu, 8–10am local.
-- **First comment:** drop the link again as the first comment — LinkedIn suppresses reach on posts with external links in the body, but the comment keeps it accessible.
-- **Alt text** (for accessibility, per slide):
-  1. Cover — "Every AutoCAD hotkey & command you actually use. 126 commands, 8 categories, 125 video clips."
-  2. "The problem: you don't lose hours to AutoCAD, you lose them to the ribbon."
-  3. "The 12 hotkeys that carry 80% of your drawing — L, C, M, CO, TR, EX, O, MI, F, AR, RO, SC."
-  4. "Eight categories, 126 commands: Drawing, Modifying, Layers, Management, Annotation, Settings, Blocks, Navigation."
-  5. "How it works: search, copy the command, watch the clip. Every video verified live."
-  6. "Built different: one HTML file, zero dependencies, 125 verified clips, free."
-  7. "Try it now: darthsandd.github.io/autocad-guide"
+I still Google basic AutoCAD commands. Not the hard ones, the basic ones.
+
+The problem is you land on a 40-minute video and hunt for the 15 seconds you needed.
+
+So I put 126 commands on one page. Hotkey, description, and a clip that starts at the exact second it's explained.
+
+One HTML file. No signup, no popup, works on your phone.
+
+darthsandd.github.io/autocad-guide
+
+What's the command you use most?
+
+---
+
+## Notes for posting
+
+**Upload:** select `slide-1.png` through `slide-7.png` in order. LinkedIn turns them into a swipeable document post. All are 1080×1080.
+
+**Put the link in the first comment, not the post body.** LinkedIn suppresses reach on posts with external links in the body. The post text above still reads fine if you pull the URL out.
+
+**Best window:** Tuesday–Thursday, 8–10am your time.
+
+**Hashtags:** three or four at the bottom, not a wall.
+`#AutoCAD #MEP #Drafting #CAD`
+
+**What I deliberately avoided**, because these are the patterns readers now clock as machine-written:
+
+- "Here's the thing" / "Let that sink in" openers
+- Neat two-part contrasts ("Not a PDF. Not a blog post.")
+- Em dashes every other sentence
+- Bolded label + paragraph, repeated four times
+- Ending on "Agree?" or "Thoughts?"
+
+The post above opens on a small admission instead of a claim, uses plain sentences of varied length, and ends on a question I'd actually want answered.
+
+**One thing to keep:** the "no clip" detail in paragraph 6 is the most credible line in the post. It's a specific, slightly unflattering fact that a marketing copywriter would have cut. Leave it in.
+
+---
+
+## Alt text (accessibility, per slide)
+
+1. "I got tired of Googling AutoCAD commands" over a desktop screenshot of the guide.
+2. "You need one command. You open YouTube. You sit through 30 seconds of intro to find the 20 seconds you needed."
+3. "126 commands. 8 categories. One page." over a desktop screenshot showing the search bar, category sidebar and command cards.
+4. "Because that's where you actually look things up" beside a phone-width screenshot of the guide.
+5. The 12 most-used hotkeys: L, C, M, CO, TR, EX, O, MI, F, AR, RO, SC.
+6. "I checked every video one by one" — one dead video was linked to 6 commands, another pointed at an unrelated topic.
+7. "Bookmark it. Save yourself the next search." with darthsandd.github.io/autocad-guide.
