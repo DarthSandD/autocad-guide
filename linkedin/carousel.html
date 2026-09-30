@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --bg:#0a0c10; --surface:#12151a; --surface-2:#181d24; --border:#1f2730;
+    --text:#e8ecf1; --text-2:#8892a0; --text-3:#5a6470;
+    --accent:#00e5ff; --accent-dim:#00b8cc; --accent-glow:rgba(0,229,255,.15);
+    --orange:#ff9f1c;
+  }
+  body{ background:#000; font-family:'Inter',sans-serif; }
+
+  .slide{
+    width:1080px; height:1080px; position:relative; overflow:hidden;
+    background:var(--bg); color:var(--text);
+    display:flex; flex-direction:column;
+    padding:88px 80px;
+  }
+  /* subtle grid, matches the site */
+  .slide::before{
+    content:''; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(0,229,255,.035) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(0,229,255,.035) 1px, transparent 1px);
+    background-size:60px 60px; pointer-events:none;
+  }
+  .slide::after{
+    content:''; position:absolute; width:820px; height:820px; border-radius:50%;
+    background:radial-gradient(circle, var(--accent-glow) 0%, transparent 68%);
+    top:-340px; right:-300px; pointer-events:none;
+  }
+  .inner{ position:relative; z-index:2; display:flex; flex-direction:column; height:100%; }
+
+  /* ---------- shared chrome ---------- */
+  .kicker{
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:700;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  }
+  .kicker .dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 14px var(--accent); }
+  .foot{
+    margin-top:auto; display:flex; align-items:center; justify-content:space-between;
+    font-family:'JetBrains Mono',monospace; font-size:19px; color:var(--text-3);
+    border-top:1px solid var(--border); padding-top:26px;
+  }
+  .foot b{ color:var(--text-2); font-weight:500; }
+  .num{ color:var(--accent); font-weight:700; }
+
+  /* ---------- slide 1 : cover ---------- */
+  .s1 h1{
+    font-size:104px; font-weight:900; line-height:1.02; letter-spacing:-.035em; margin:auto 0 0;
+  }
+  .s1 h1 .hl{ color:var(--accent); display:block; }
+  .s1 .sub{ font-size:31px; color:var(--text-2); font-weight:400; line-height:1.45; margin-top:34px; max-width:800px; }
+  .s1 .badge{
+    margin-top:44px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:600;
+    padding:11px 20px; border-radius:999px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text-2);
+  }
+  .chip.on{ border-color:var(--accent-dim); color:var(--accent); background:rgba(0,229,255,.07); }
+
+  /* ---------- section slides ---------- */
+  .stitle{ font-size:70px; font-weight:800; letter-spacing:-.03em; line-height:1.08; margin-top:30px; }
+  .stitle .hl{ color:var(--accent); }
+  .sdesc{ font-size:26px; color:var(--text-2); margin-top:20px; line-height:1.5; max-width:860px; }
+
+  /* hotkey grid */
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:44px; }
+  .row{
+    display:flex; align-items:center; gap:20px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:16px; padding:20px 24px;
+  }
+  .key{
+    font-family:'JetBrains Mono',monospace; font-size:27px; font-weight:700;
+    color:var(--bg); background:var(--accent); border-radius:10px;
+    min-width:104px; text-align:center; padding:12px 14px; letter-spacing:.02em;
+  }
+  .key.alt{ background:var(--orange); }
+  .rname{ font-size:27px; font-weight:600; letter-spacing:-.01em; }
+  .rdesc{ font-size:19px; color:var(--text-3); margin-top:3px; }
+
+  /* stat slides */
+  .stats{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+  .stat{
+    background:var(--surface); border:1px solid var(--border); border-radius:20px;
+    padding:38px 34px; display:flex; flex-direction:column; gap:8px;
+  }
+  .stat .v{ font-size:82px; font-weight:900; letter-spacing:-.04em; color:var(--accent); line-height:1; }
+  .stat .v.o{ color:var(--orange); }
+  .stat .l{ font-size:23px; color:var(--text-2); font-weight:500; }
+
+  /* compact stats for the 8-category slide */
+  .stats.compact{ margin-top:26px; gap:14px; }
+  .stats.compact .stat{ padding:20px 24px; gap:2px; border-radius:16px; }
+  .stats.compact .stat .v{ font-size:46px; }
+  .stats.compact .stat .l{ font-size:20px; line-height:1.35; }
+
+  /* cta */
+  .cta{
+    margin-top:auto; background:linear-gradient(135deg, rgba(0,229,255,.13), rgba(255,159,28,.09));
+    border:1px solid var(--accent-dim); border-radius:22px; padding:44px 46px;
+  }
+  .cta h3{ font-size:44px; font-weight:800; letter-spacing:-.02em; }
+  .cta p{ font-size:26px; color:var(--text-2); margin-top:14px; line-height:1.5; }
+  .cta .url{ font-family:'JetBrains Mono',monospace; font-size:26px; color:var(--accent); margin-top:22px; font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ============ SLIDE 1 — COVER ============ -->
+<div class="slide s1" id="s1">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>AutoCAD · Free Reference</div>
+    <h1>Every AutoCAD<span class="hl">hotkey &amp; command</span>you actually use.</h1>
+    <p class="sub">126 commands across 8 categories — each one with its hotkey, alias and a curated video clip at the exact timestamp.</p>
+    <div class="badge">
+      <span class="chip on">126 commands</span>
+      <span class="chip">8 categories</span>
+      <span class="chip">125 video clips</span>
+      <span class="chip">Free · no signup</span>
+    </div>
+    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">01 / 07</span></div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 2 — THE PROBLEM ============ -->
+<div class="slide" id="s2">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>The Problem</div>
+    <h2 class="stitle">You don't lose hours to AutoCAD.<br>You lose them to <span class="hl">the ribbon</span>.</h2>
+    <p class="sdesc">Every command you hunt through a menu is a command you already knew. The speed was always in the keyboard — it just was never in one place.</p>
+    <div class="stats">
+      <div class="stat"><span class="v">3&nbsp;min</span><span class="l">Average time lost hunting one tool in the ribbon</span></div>
+      <div class="stat"><span class="v o">60+</span><span class="l">Commands a working drafter uses every single day</span></div>
+      <div class="stat"><span class="v">2×</span><span class="l">Drafting speed once the keyboard becomes muscle memory</span></div>
+      <div class="stat"><span class="v o">0</span><span class="l">Reference sheets that survived contact with a real deadline</span></div>
+    </div>
+    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">02 / 07</span></div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 3 — TOP HOTKEYS ============ -->
+<div class="slide" id="s3">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>The Essentials</div>
+    <h2 class="stitle">The <span class="hl">12 hotkeys</span> that carry 80% of your drawing.</h2>
+    <div class="grid">
+      <div class="row"><span class="key">L</span><div><div class="rname">Line</div><div class="rdesc">Straight segments</div></div></div>
+      <div class="row"><span class="key">C</span><div><div class="rname">Circle</div><div class="rdesc">Centre + radius</div></div></div>
+      <div class="row"><span class="key">M</span><div><div class="rname">Move</div><div class="rdesc">Relocate objects</div></div></div>
+      <div class="row"><span class="key">CO</span><div><div class="rname">Copy</div><div class="rdesc">Duplicate at offset</div></div></div>
+      <div class="row"><span class="key alt">TR</span><div><div class="rname">Trim</div><div class="rdesc">Cut at edges</div></div></div>
+      <div class="row"><span class="key alt">EX</span><div><div class="rname">Extend</div><div class="rdesc">Lengthen to boundary</div></div></div>
+      <div class="row"><span class="key">O</span><div><div class="rname">Offset</div><div class="rdesc">Parallel copies</div></div></div>
+      <div class="row"><span class="key">MI</span><div><div class="rname">Mirror</div><div class="rdesc">Symmetric copy</div></div></div>
+      <div class="row"><span class="key alt">F</span><div><div class="rname">Fillet</div><div class="rdesc">Rounded corner</div></div></div>
+      <div class="row"><span class="key alt">AR</span><div><div class="rname">Array</div><div class="rdesc">Pattern copies</div></div></div>
+      <div class="row"><span class="key">RO</span><div><div class="rname">Rotate</div><div class="rdesc">Angle about a base</div></div></div>
+      <div class="row"><span class="key">SC</span><div><div class="rname">Scale</div><div class="rdesc">Uniform resize</div></div></div>
+    </div>
+    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">03 / 07</span></div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 4 — WHAT'S INSIDE ============ -->
+<div class="slide" id="s4">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>What's Inside</div>
+    <h2 class="stitle">Eight categories.<br>One page. <span class="hl">Zero clutter.</span></h2>
+    <div class="stats compact">
+      <div class="stat"><span class="v">20</span><span class="l">Drawing — lines, arcs, splines, hatch</span></div>
+      <div class="stat"><span class="v">24</span><span class="l">Modifying — move, trim, fillet, array</span></div>
+      <div class="stat"><span class="v">18</span><span class="l">Layers — isolate, freeze, match, purge</span></div>
+      <div class="stat"><span class="v">17</span><span class="l">Management — plot, audit, recover</span></div>
+      <div class="stat"><span class="v">15</span><span class="l">Annotation — text, dims, leaders</span></div>
+      <div class="stat"><span class="v">13</span><span class="l">Settings — osnap, ortho, units</span></div>
+      <div class="stat"><span class="v">10</span><span class="l">Blocks — insert, xref, edit in place</span></div>
+      <div class="stat"><span class="v">9</span><span class="l">Navigation — zoom, pan, viewports</span></div>
+    </div>
+    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">04 / 07</span></div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 5 — HOW IT WORKS ============ -->
+<div class="slide" id="s5">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>How It Works</div>
+    <h2 class="stitle">Search it. Copy it.<br><span class="hl">Watch it.</span></h2>
+    <div class="stats">
+      <div class="stat"><span class="v">01</span><span class="l"><b>Search or filter</b> — type a name, an alias or a description; results narrow instantly.</span></div>
+      <div class="stat"><span class="v">02</span><span class="l"><b>Copy the command</b> — one click puts the exact command string on your clipboard.</span></div>
+      <div class="stat"><span class="v">03</span><span class="l"><b>Press play</b> — each card opens a curated clip at the exact start second and stops at the end.</span></div>
+      <div class="stat"><span class="v o">04</span><span class="l"><b>No dead ends</b> — every video is verified live, so a link never plays the wrong thing.</span></div>
+    </div>
+    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">05 / 07</span></div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 6 — BUILT DIFFERENT ============ -->
+<div class="slide" id="s6">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>Built Different</div>
+    <h2 class="stitle">Not a PDF. Not a blog post.<br><span class="hl">A single file.</span></h2>
+    <p class="sdesc">No framework, no build step, no backend, no dependencies. One HTML file that loads instantly and works offline once open.</p>
+    <div class="stats">
+      <div class="stat"><span class="v">1</span><span class="l">File — the entire guide</span></div>
+      <div class="stat"><span class="v o">0</span><span class="l">Dependencies or trackers</span></div>
+      <div class="stat"><span class="v">125</span><span class="l">Video clips, each verified live</span></div>
+      <div class="stat"><span class="v o">∞</span><span class="l">Free to use, share and keep</span></div>
+    </div>
+    <div class="foot"><b>AutoCAD Hotkey &amp; Command Guide</b><span class="num">06 / 07</span></div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 7 — CTA ============ -->
+<div class="slide" id="s7">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>Try It Now</div>
+    <h2 class="stitle">Bookmark it.<br>Then <span class="hl">stop hunting menus.</span></h2>
+    <p class="sdesc">Built for drafters and MEP engineers who'd rather draw than dig through the ribbon. It's free, it's fast, and it's one click away.</p>
+    <div class="cta">
+      <h3>AutoCAD Hotkey &amp; Command Guide</h3>
+      <p>126 commands · 8 categories · 125 video clips — all in one page.</p>
+      <div class="url">darthsandd.github.io/autocad-guide</div>
+    </div>
+    <div class="foot"><b>Built by Darren Lieu</b><span class="num">07 / 07</span></div>
+  </div>
+</div>
+
+</body>
+</html>
