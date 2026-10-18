@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0c10; --surface:#12151a; --surface-2:#181d24; --border:#1f2730;
+    --text:#e8ecf1; --text-2:#8892a0; --text-3:#5a6470;
+    --accent:#00e5ff; --orange:#ff9f1c;
+  }
+  body{background:#000;font-family:'Inter',sans-serif}
+  .slide{
+    width:1080px;height:1350px;position:relative;overflow:hidden;
+    background:var(--bg);color:var(--text);display:flex;flex-direction:column;
+    padding:104px 78px;
+  }
+  .slide::before{
+    content:'';position:absolute;inset:0;
+    background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);
+    background-size:64px 64px;pointer-events:none;
+  }
+  .inner{position:relative;z-index:2;display:flex;flex-direction:column;height:100%}
+  .foot{
+    margin-top:auto;display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',monospace;font-size:19px;color:var(--text-3);
+    border-top:1px solid var(--border);padding-top:24px;
+  }
+  .foot .n{color:var(--accent);font-weight:700}
+  h1{font-size:84px;font-weight:900;line-height:1.06;letter-spacing:-.035em}
+  h2{font-size:63px;font-weight:800;line-height:1.14;letter-spacing:-.03em}
+  .hl{color:var(--accent)}
+  p{font-size:30px;color:var(--text-2);line-height:1.58;font-weight:400}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+    display:flex;align-items:center;gap:11px;margin-bottom:30px;
+  }
+  .tag i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);font-style:normal}
+
+  .frame{
+    border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    background:var(--surface);box-shadow:0 24px 60px rgba(0,0,0,.55);
+  }
+  .bar{
+    height:42px;background:var(--surface-2);display:flex;align-items:center;gap:8px;
+    padding:0 18px;border-bottom:1px solid var(--border);
+  }
+  .bar span{width:11px;height:11px;border-radius:50%;background:#2b333d}
+  .bar .url{
+    margin-left:14px;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text-3);
+    background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:4px 14px;
+  }
+  .frame img{display:block;width:100%}
+
+  .keys{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:17px}
+  .k{display:flex;align-items:center;gap:19px;background:var(--surface);
+     border:1px solid var(--border);border-radius:14px;padding:19px 22px}
+  .k b{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;
+       background:var(--accent);color:var(--bg);border-radius:10px;min-width:98px;
+       text-align:center;padding:11px 12px}
+  .k.o b{background:var(--orange)}
+  .k div{font-size:27px;font-weight:600}
+
+  .big{font-size:67px;font-weight:800;line-height:1.16;letter-spacing:-.03em;margin-top:auto;margin-bottom:auto}
+  .cta{
+    margin-top:auto;border:1px solid #00b8cc;border-radius:20px;padding:44px 44px;
+    background:linear-gradient(135deg,rgba(0,229,255,.12),rgba(255,159,28,.07));
+  }
+  .cta h3{font-size:42px;font-weight:800;letter-spacing:-.02em}
+  .cta p{font-size:26px;margin-top:13px}
+  .cta .u{font-family:'JetBrains Mono',monospace;font-size:27px;color:var(--accent);
+          font-weight:700;margin-top:20px}
+</style>
+<style>body{margin:0}.slide{display:none!important}.slide#s6{display:flex!important}</style></head>
+<body>
+
+<!-- 1 — HOOK -->
+<div class="slide" id="s1">
+  <div class="inner">
+    <div class="tag"><i></i>The whole reason</div>
+    <h1>I got tired of<br>Googling AutoCAD<br><span class="hl">commands.</span></h1>
+    <p style="margin-top:34px;max-width:800px">So I put all 126 of them on one page, each one with the 20 seconds of video that actually matters.</p>
+    <div class="frame" style="margin-top:auto">
+      <div class="bar"><span></span><span></span><span></span><div class="url">darthsandd.github.io/autocad-guide</div></div>
+      <img src="shots/crop-desktop.png" alt="The guide">
+    </div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">1 / 7</span></div>
+  </div>
+</div>
+
+<!-- 2 — THE PROBLEM -->
+<div class="slide" id="s2">
+  <div class="inner">
+    <div class="tag"><i></i>Sound familiar?</div>
+    <div class="big">
+      You need one command.<br>
+      You open YouTube.<br>
+      You sit through <span class="hl">30 seconds of intro</span><br>
+      to find the <span class="hl">20 seconds</span> you needed.
+    </div>
+    <p style="margin-bottom:40px">Then you do it again next week, because you forgot to bookmark it.</p>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">2 / 7</span></div>
+  </div>
+</div>
+
+<!-- 3 — THE SITE -->
+<div class="slide" id="s3">
+  <div class="inner">
+    <div class="tag"><i></i>So I built this</div>
+    <h2>126 commands.<br>8 categories. <span class="hl">One page.</span></h2>
+    <div class="frame" style="margin-top:40px">
+      <div class="bar"><span></span><span></span><span></span><div class="url">darthsandd.github.io/autocad-guide</div></div>
+      <img src="shots/crop-desktop2.png" alt="Desktop view">
+    </div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">3 / 7</span></div>
+  </div>
+</div>
+
+<!-- 4 — MOBILE -->
+<div class="slide" id="s4">
+  <div class="inner">
+    <div class="tag"><i></i>And on your phone</div>
+    <h2>Because that's where<br>you <span class="hl">actually</span> look things up.</h2>
+    <div style="display:flex;gap:40px;margin-top:48px;align-items:flex-start">
+      <div class="frame" style="width:400px;flex:0 0 auto">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <img src="shots/mobile-true.png" alt="Mobile view">
+      </div>
+      <div style="padding-top:34px">
+        <p style="font-size:28px">Search, filter, copy the command, hit play.</p>
+        <p style="font-size:28px;margin-top:24px">No app. No signup. No email.</p>
+        <p style="font-size:28px;margin-top:24px">It's a web page. It just works.</p>
+      </div>
+    </div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">4 / 7</span></div>
+  </div>
+</div>
+
+<!-- 5 — HOTKEYS -->
+<div class="slide" id="s5">
+  <div class="inner">
+    <div class="tag"><i></i>Start here</div>
+    <h2>The <span class="hl">12 hotkeys</span> that do<br>most of the work.</h2>
+    <div class="keys">
+      <div class="k"><b>L</b><div>Line</div></div>
+      <div class="k"><b>C</b><div>Circle</div></div>
+      <div class="k"><b>M</b><div>Move</div></div>
+      <div class="k"><b>CO</b><div>Copy</div></div>
+      <div class="k o"><b>TR</b><div>Trim</div></div>
+      <div class="k o"><b>EX</b><div>Extend</div></div>
+      <div class="k"><b>O</b><div>Offset</div></div>
+      <div class="k"><b>MI</b><div>Mirror</div></div>
+      <div class="k o"><b>F</b><div>Fillet</div></div>
+      <div class="k o"><b>AR</b><div>Array</div></div>
+      <div class="k"><b>RO</b><div>Rotate</div></div>
+      <div class="k"><b>SC</b><div>Scale</div></div>
+    </div>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">5 / 7</span></div>
+  </div>
+</div>
+
+<!-- 6 — THE HONEST BIT -->
+<div class="slide" id="s6">
+  <div class="inner">
+    <div class="tag"><i></i>The boring part nobody sees</div>
+    <div class="big" style="margin-bottom:46px">
+      I checked <span class="hl">every video</span><br>one by one.
+    </div>
+    <p style="max-width:880px">One of them was dead — and it was still linked to 4 different commands. Anyone who clicked got a broken player. Another one pointed at a completely unrelated topic.</p>
+    <p style="max-width:880px;margin-top:22px">So I replaced them. And for the one command I couldn't find a decent clip for, the card just says <span class="hl">"no clip"</span> — I'd rather it say that than quietly play the wrong thing.</p>
+    <div class="foot"><span>AutoCAD Hotkey &amp; Command Guide</span><span class="n">6 / 7</span></div>
+  </div>
+</div>
+
+<!-- 7 — CTA -->
+<div class="slide" id="s7">
+  <div class="inner">
+    <div class="tag"><i></i>Free, if you want it</div>
+    <h2>Bookmark it.<br>Save yourself the <span class="hl">next search.</span></h2>
+    <div class="cta" style="margin-top:auto">
+      <h3>AutoCAD Hotkey &amp; Command Guide</h3>
+      <p>126 commands · 8 categories · 125 clips at the exact timestamp.</p>
+      <div class="u">darthsandd.github.io/autocad-guide</div>
+    </div>
+    <p style="margin-top:36px;font-size:27px">Which command do you reach for most?<br>I'm still finding ones I've typed the long way for years.</p>
+    <div class="foot" style="margin-top:44px"><span>Built by Darren Lieu</span><span class="n">7 / 7</span></div>
+  </div>
+</div>
+
+</body>
+</html>
