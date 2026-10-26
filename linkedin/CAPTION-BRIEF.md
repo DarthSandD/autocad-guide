@@ -130,7 +130,7 @@ mismatching.
 **Put the URL in the first comment, not the post body.** LinkedIn suppresses
 reach on posts containing external links in the body.
 
-`darthsandd.github.io/autocad-guide`
+`autocad-guide.pages.dev`
 
 ---
 
@@ -196,7 +196,7 @@ Three or four at the very bottom, never a wall:
 | Size | one 50 KB `index.html` |
 | Dependencies / build step | none |
 | Cost / signup | free, none |
-| URL | darthsandd.github.io/autocad-guide |
+| URL | autocad-guide.pages.dev |
 | Repo | github.com/DarthSandD/autocad-guide |
 | Author | Darren Lieu |
 

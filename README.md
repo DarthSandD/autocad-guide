@@ -1,6 +1,6 @@
 # AutoCAD Hotkey & Command Guide
 
-Live site: https://darthsandd.github.io/autocad-guide/ (GitHub Pages, serves `index.html`).
+Live site: https://autocad-guide.pages.dev/ (GitHub Pages, serves `index.html`).
 
 Single-file reference for AutoCAD: 126 commands across 8 categories (Drawing, Modify,
 Annotation, Layers, View, Dimension, Block, Misc) with hotkey, alias, description,

@@ -45,7 +45,7 @@ Each one drops straight into the caption body above.
 
 **First comment** (put the link here, not in the post — LinkedIn throttles reach on body links):
 
-> Link: darthsandd.github.io/autocad-guide
+> Link: autocad-guide.pages.dev
 
 ---
 
@@ -71,7 +71,7 @@ For the commands I couldn't find a decent clip for, the card just says "no clip"
 
 It's free and there's no signup.
 
-darthsandd.github.io/autocad-guide
+autocad-guide.pages.dev
 
 Which command do you reach for most? I'm still finding ones I've typed the long way for years.
 
@@ -87,7 +87,7 @@ So I put 126 commands on one page. Hotkey, description, and a clip that starts a
 
 One HTML file. No signup, no popup, works on your phone.
 
-darthsandd.github.io/autocad-guide
+autocad-guide.pages.dev
 
 What's the command you use most?
 
@@ -126,4 +126,4 @@ The post above opens on a small admission instead of a claim, uses plain sentenc
 4. "Because that's where you actually look things up" beside a phone-width screenshot of the guide.
 5. The 12 most-used hotkeys: L, C, M, CO, TR, EX, O, MI, F, AR, RO, SC.
 6. "I checked every video one by one" — one dead video was linked to 4 commands, another pointed at an unrelated topic.
-7. "Bookmark it. Save yourself the next search." with darthsandd.github.io/autocad-guide.
+7. "Bookmark it. Save yourself the next search." with autocad-guide.pages.dev.
